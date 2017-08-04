@@ -65,6 +65,24 @@ export var startReading = (text) => {
   };
 };
 
+export var sendCode = (phoneInput, appVerifier) => {
+  return (dispatch, getState) => {
+    var countryCode = '+52';
+    var phoneNumber = countryCode.concat(phoneInput.toString());
+    firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+     .then(function (confirmationResult) {
+       // SMS sent. Prompt user to type the code from the message, then sign the
+       // user in with confirmationResult.confirm(code).
+       window.confirmationResult = confirmationResult;
+       console.log('Mensaje enviado al ',phoneNumber);
+     }).catch(function (error) {
+       // Error; SMS not sent
+       // ...
+       console.log(error);
+     });
+  };
+};
+
 export var login = (uid) => {
   return {
     type: 'LOGIN',
