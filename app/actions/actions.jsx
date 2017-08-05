@@ -14,6 +14,13 @@ export var addData= (data) => {
   };
 };
 
+export var setPhone = (phone) => {
+  return {
+    type: 'SET_PHONE',
+    phone
+  };
+};
+
 export var startWriting = (text) => {
   return (dispatch, getState) => {
     var data = {
@@ -90,12 +97,18 @@ export var login = (uid) => {
   };
 };
 
-export var startLogin = () => {
+export var startLogin = (code) => {
   return (dispatch, getState) => {
-    firebase.auth().signInWithPopup(githubProvider).then((result) => {
-      console.log('Auth worked', result);
-    }, (error) => {
-      console.log('Unable to auth', error);
+    confirmationResult.confirm(code).then(function (result) {
+      // User signed in successfully.
+      var user = result.user;
+      var credential = firebase.auth.PhoneAuthProvider.credential(confirmationResult.verificationId, code);
+      firebase.auth().signInWithCredential(credential);
+
+      console.log("User authenticated");
+    }).catch(function (error) {
+      // User couldn't sign in (bad verification code?)
+      console.log(error, "startLogin action");
     });
   };
 };

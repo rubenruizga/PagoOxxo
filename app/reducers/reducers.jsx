@@ -22,6 +22,17 @@ export var firebaseReducer = (state = [], action) => {
   }
 };
 
+export var userReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'SET_PHONE':
+      return  ({
+        phone: action.phone
+      });
+    default:
+      return state;
+  }
+};
+
 export var authReducer = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN':

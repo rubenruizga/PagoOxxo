@@ -18,7 +18,7 @@ export var Welcome = React.createClass({
   onWelcome() {
     var {dispatch} = this.props;
     var {phoneInput} = this.refs;
-
+    dispatch(actions.setPhone(phoneInput.value));
     dispatch(actions.sendCode(phoneInput.value, window.recaptchaVerifier));
   },
   render() {
