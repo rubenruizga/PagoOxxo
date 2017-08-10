@@ -16,10 +16,9 @@ export var addData= (data) => {
   };
 };
 
-export var getVoluntario = (voluntario) => {
+export var getUser = () => {
   return (dispatch, getState) => {
-    var cel = 6141611841;
-    var uid = getState().auth.uid;
+    var cel = getState().user.cel;
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -31,15 +30,22 @@ export var getVoluntario = (voluntario) => {
       };
     $.ajax(settings).done( (response) => {
       console.log(response);
-      //dispatch(setVoluntario(response));
+      dispatch(setUser(response));
     });
   };
 };
 
-export var setPhone = (phone) => {
+export var setPhone = (cel) => {
   return {
     type: 'SET_PHONE',
-    phone
+    cel
+  };
+};
+
+export var setUser = (data) => {
+  return {
+    type: 'SET_USER',
+    data
   };
 };
 
@@ -94,16 +100,16 @@ export var startReading = (text) => {
   };
 };
 
-export var sendCode = (phoneInput, appVerifier) => {
+export var sendCode = (celInput, appVerifier) => {
   return (dispatch, getState) => {
     var countryCode = '+52';
-    var phoneNumber = countryCode.concat(phoneInput.toString());
-    firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+    var celNumber = countryCode.concat(celInput.toString());
+    firebase.auth().signInWithPhoneNumber(celNumber, appVerifier)
      .then(function (confirmationResult) {
        // SMS sent. Prompt user to type the code from the message, then sign the
        // user in with confirmationResult.confirm(code).
        window.confirmationResult = confirmationResult;
-       console.log('Mensaje enviado al ',phoneNumber);
+       console.log('Mensaje enviado al ',celNumber);
      }).catch(function (error) {
        // Error; SMS not sent
        // ...

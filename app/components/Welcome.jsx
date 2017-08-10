@@ -17,9 +17,9 @@ export var Welcome = React.createClass({
   },
   onWelcome() {
     var {dispatch} = this.props;
-    var {phoneInput} = this.refs;
-    dispatch(actions.setPhone(phoneInput.value));
-    dispatch(actions.sendCode(phoneInput.value, window.recaptchaVerifier));
+    var {celInput} = this.refs;
+    dispatch(actions.setPhone(celInput.value));
+    dispatch(actions.sendCode(celInput.value, window.recaptchaVerifier));
   },
   render() {
     return (
@@ -28,7 +28,7 @@ export var Welcome = React.createClass({
         <h3>¡Bienvenido!</h3>
         <h5>En Soñar Despierto nos preocupamos por tu seguridad, por lo que ahora es necesario que verifiques tu identidad por medio de tu numero de telefono. Despues de introducir tu numero reciviras un mensja de texto con el codigo de verificacion.</h5>
         <label>Tu numero de celular
-          <input type="number" ref="phoneInput" placeholder="6141234565"></input>
+          <input type="number" ref="celInput" placeholder="6141234565"></input>
         </label>
         <button id="sign-in-button" className="button" onClick={this.onWelcome}>ENVIAR CODIGO</button>
       </div>

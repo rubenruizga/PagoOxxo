@@ -23,8 +23,8 @@ export var AuthSms = React.createClass({
     dispatch(actions.startLogin(code.value));
   },
   sendSms() {
-    var {dispatch, phone} = this.props;
-    dispatch(actions.sendCode(phone, window.recaptchaVerifier));
+    var {dispatch, cel} = this.props;
+    dispatch(actions.sendCode(cel, window.recaptchaVerifier));
   },
   render() {
     return (
@@ -43,7 +43,7 @@ export var AuthSms = React.createClass({
 export default Redux.connect(
   (state) => {
     return {
-      phone: state.user.phone
+      cel: state.user.cel
     };
   }
 )(AuthSms);

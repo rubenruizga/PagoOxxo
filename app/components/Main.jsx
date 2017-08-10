@@ -6,8 +6,10 @@ import FirebaseActions from 'FirebaseActions';
 
 export var Main = React.createClass({
   componentDidMount() {
-    var {dispatch, phone} = this.props;
-    dispatch(actions.getVoluntario(phone));
+    var {dispatch, cel} = this.props;
+    if (cel != null) {
+      dispatch(actions.getUser());
+    }
   },
   onLogout(e) {
     var {dispatch} = this.props;
@@ -39,7 +41,7 @@ export var Main = React.createClass({
 export default Redux.connect(
   (state) => {
     return {
-      phone: state.user.phone
+      cel: state.user.cel
     };
   }
 )(Main);

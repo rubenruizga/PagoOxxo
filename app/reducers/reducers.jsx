@@ -24,9 +24,19 @@ export var firebaseReducer = (state = [], action) => {
 
 export var userReducer = (state = {}, action) => {
   switch (action.type) {
+    case 'SET_USER':
+      return  ({
+        birthyear: action.data.birthyear,
+        cel: action.data.cel,
+        email: action.data.email,
+        gender: action.data.gender,
+        name: action.data.name,
+        school: action.data.school,
+        size: action.data.size
+      });
     case 'SET_PHONE':
       return  ({
-        phone: action.phone
+        cel: action.cel
       });
     default:
       return state;

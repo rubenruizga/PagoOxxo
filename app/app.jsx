@@ -10,6 +10,9 @@ import router from 'app/router';
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
+    var cel = user.phoneNumber;
+    cel = parseInt(cel.substring(3));
+    store.dispatch(actions.setPhone(cel));
     store.dispatch(actions.login(user.uid));
     hashHistory.push('/main');
   } else {
