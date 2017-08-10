@@ -1,5 +1,7 @@
 import firebase, {firebaseRef, githubProvider} from 'app/firebase/';
 
+var URL = 'https://us-central1-registrosd-21846.cloudfunctions.net/bigben';
+
 export var testAction = (id) => {
   return {
     type: 'TEST_ACTION',
@@ -11,6 +13,26 @@ export var addData= (data) => {
   return {
     type: 'ADD_DATA',
     data
+  };
+};
+
+export var getVoluntario = (voluntario) => {
+  return (dispatch, getState) => {
+    var cel = 6141611841;
+    var uid = getState().auth.uid;
+    var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": URL,
+      "method": "GET",
+      "headers": {
+        "cel": cel
+        }
+      };
+    $.ajax(settings).done( (response) => {
+      console.log(response);
+      //dispatch(setVoluntario(response));
+    });
   };
 };
 
