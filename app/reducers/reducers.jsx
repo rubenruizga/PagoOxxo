@@ -32,7 +32,8 @@ export var userReducer = (state = {}, action) => {
         gender: action.data.gender,
         name: action.data.name,
         school: action.data.school,
-        size: action.data.size
+        size: action.data.size,
+        uid: action.data.uid
       });
     case 'SET_PHONE':
       return  ({

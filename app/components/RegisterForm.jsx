@@ -3,8 +3,16 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 
 export var RegisterForm = React.createClass({
+  onSend(e){
+    e.preventDefault();
+    var {dispatch, cel, uid = ''} = this.props;
+    var {birthyear, email, gender, name, school, size} = this.refs;
+    var volunteer = {birthyear: birthyear.value, cel, email: email.value, gender: gender.value, name: name.value, school: school.value, size: size.value, uid}
+    console.log(volunteer);
+    //dispatch(actions.startLogin(code.value));
+  },
   render: function () {
-    var {dispatch, birthyear  = '', cel = '', email = '', gender = '', name = '', school = '', size = '', uid = ''} = this.props;
+    var {dispatch, birthyear = '', cel = '', email = '', gender = '', name = '', school = '', size = '', uid = ''} = this.props;
     var volunteerData = () => {
       return (
         <div>
@@ -46,7 +54,7 @@ export default connect(
       name: state.user.name,
       school: state.user.school,
       size: state.user.size,
-      uid: state.auth.uid
+      uid: state.user.uid
     };
   }
 )(RegisterForm);
