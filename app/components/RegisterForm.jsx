@@ -9,16 +9,16 @@ export var RegisterForm = React.createClass({
       return (
         <div>
           <input ref="cel" type="number" placeholder="6141611841" defaultValue={cel}></input>
-          <input ref="name" type="text" placeholder="Nombre" value={name}></input>
-          <input ref="email" type="email" placeholder="john@gmail.com" value={email}></input>
-          <input type="radio" ref="gender" value="Hombre" checked={gender === "Hombre"}></input><label htmlFor="Hombre">Hombre</label>
-          <input type="radio" ref="gender" value="Mujer" checked={gender === "Mujer"}></input><label htmlFor="Mujer">Mujer</label>
-          <input ref="birthyear" type="number" placeholder="1999" value={birthyear}></input>
-          <input ref="school" type="text" placeholder="Hogwarts" value={school}></input>
+          <input ref="name" type="text" placeholder="Nombre" defaultValue={name}></input>
+          <input ref="email" type="email" placeholder="john@gmail.com" defaultValue={email}></input>
+          <input type="radio" name="gender" ref="gender" value="Hombre" defaultChecked={gender === "Hombre"}></input><label htmlFor="Hombre">Hombre</label>
+          <input type="radio" name="gender" ref="gender" value="Mujer" defaultChecked={gender === "Mujer"}></input><label htmlFor="Mujer">Mujer</label>
+          <input ref="birthyear" type="number" placeholder="1999" defaultValue={birthyear}></input>
+          <input ref="school" type="text" placeholder="Hogwarts" defaultValue={school}></input>
           <label>Talla</label>
-          <input type="radio" ref="size" value="S" checked={size === "S"} required></input><label htmlFor="S">S</label>
-          <input type="radio" ref="size" value="M" checked={size === "M"}></input><label htmlFor="M">M</label>
-          <input type="radio" ref="size" value="L" checked={size === "L"}></input><label htmlFor="L">L</label>
+          <input type="radio" name="size" ref="size" value="S" defaultChecked={size === "S"} required></input><label htmlFor="S">S</label>
+          <input type="radio" name="size" ref="size" value="M" defaultChecked={size === "M"}></input><label htmlFor="M">M</label>
+          <input type="radio" name="size" ref="size" value="L" defaultChecked={size === "L"}></input><label htmlFor="L">L</label>
         </div>
       );
     };

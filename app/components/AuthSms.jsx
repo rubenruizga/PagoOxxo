@@ -5,6 +5,7 @@ import firebase from 'firebase';
 
 export var AuthSms = React.createClass({
   componentDidMount() {
+    var {dispatch} = this.props;
     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('send-button', {
      'size': 'invisible',
      'callback': function(response) {

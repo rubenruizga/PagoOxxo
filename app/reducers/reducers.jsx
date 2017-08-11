@@ -36,6 +36,7 @@ export var userReducer = (state = {}, action) => {
       });
     case 'SET_PHONE':
       return  ({
+        ...state,
         cel: action.cel
       });
     default:

@@ -1,4 +1,5 @@
 import firebase, {firebaseRef, githubProvider} from 'app/firebase/';
+var {hashHistory} = require('react-router');
 
 var URL = 'https://us-central1-registrosd-21846.cloudfunctions.net/bigben';
 
@@ -16,9 +17,8 @@ export var addData= (data) => {
   };
 };
 
-export var getUser = () => {
+export var getUser = (cel) => {
   return (dispatch, getState) => {
-    var cel = getState().user.cel;
     var settings = {
       "async": true,
       "crossDomain": true,
@@ -29,8 +29,12 @@ export var getUser = () => {
         }
       };
     $.ajax(settings).done( (response) => {
-      console.log(response);
-      dispatch(setUser(response));
+      if (response != {}) {
+        dispatch(setUser(response));
+      } else {
+        dispatch(setPhone(cel));
+      }
+      hashHistory.push('/main');
     });
   };
 };

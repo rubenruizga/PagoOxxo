@@ -5,12 +5,6 @@ import * as actions from 'actions';
 import RegisterForm from 'RegisterForm';
 
 export var Main = React.createClass({
-  componentDidMount() {
-    var {dispatch, cel} = this.props;
-    if (cel != null) {
-      dispatch(actions.getUser());
-    }
-  },
   onLogout(e) {
     var {dispatch} = this.props;
     e.preventDefault();
