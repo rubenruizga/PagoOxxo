@@ -2,7 +2,7 @@ import React from 'react';
 import * as Redux from 'react-redux';
 
 import * as actions from 'actions';
-import FirebaseActions from 'FirebaseActions';
+import RegisterForm from 'RegisterForm';
 
 export var Main = React.createClass({
   componentDidMount() {
@@ -29,7 +29,7 @@ export var Main = React.createClass({
         <div className="row">
           <div className="column small-centered small-11 medium-6 large-5">
             <div className="container">
-              <FirebaseActions/>
+              <RegisterForm/>
             </div>
           </div>
         </div>
