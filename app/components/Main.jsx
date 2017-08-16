@@ -18,13 +18,11 @@ export var Main = React.createClass({
           <a href="#" onClick={this.onLogout}>Logout</a>
         </div>
 
-        <h1 className="page-title">React to Main</h1>
-
-        <div className="row">
-          <div className="column small-centered small-11 medium-6 large-5">
-            <div className="container">
-              <RegisterForm/>
-            </div>
+        <div className="grid-container">
+          <div className="grid-x grid-margin-x">
+            <div className="cell medium-2"></div>
+            <div className="cell medium-8"><RegisterForm/></div>
+            <div className="cell medium-2"></div>
           </div>
         </div>
       </div>
