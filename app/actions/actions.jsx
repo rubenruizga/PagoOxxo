@@ -75,7 +75,7 @@ export var startWriting = (volunteer, uid) => {
     } else {
       if (volunteer != fetchedVol) {
         console.log('need to be updated');
-        var volRef = firebaseRef.child('voluntarioss').update(volunteer);
+        var volRef = firebaseRef.child(`voluntarioss/${uid}`).update(volunteer);
         volRef.then(() => {
           console.log('updated');
         });
