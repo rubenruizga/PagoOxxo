@@ -11,22 +11,34 @@ export var RegisterForm = React.createClass({
     console.log(volunteer);
     dispatch(actions.startWriting(volunteer, uid));
   },
+  onGender(e){
+    console.log(e.currentTarget.value);
+    var gender = document.getElementById('gender');
+    gender.value = e.currentTarget.value;
+  },
+  onSize(e){
+    console.log(e.currentTarget.value);
+    var size = document.getElementById('size');
+    size.value = e.currentTarget.value;
+  },
   render: function () {
-    var {dispatch, birthyear = '', cel = '', email = '', gender = '', name = '', school = '', size = '', uid = ''} = this.props;
+    var {dispatch, birthyear = '', cel = '', email = '', gender = 'Hombre', name = '', school = '', size = 'S', uid = ''} = this.props;
     var volunteerData = () => {
       return (
         <div>
+          <input id="size" ref="size" type="hidden" defaultValue={size}></input>
+          <input id="gender" ref="gender" type="hidden" defaultValue={gender}></input>
           <input ref="cel" type="number" placeholder="6141611841" defaultValue={cel}></input>
           <input ref="name" type="text" placeholder="Nombre" defaultValue={name}></input>
           <input ref="email" type="email" placeholder="john@gmail.com" defaultValue={email}></input>
-          <input type="radio" name="gender" ref="gender" value="Hombre" defaultChecked={gender === "Hombre"}></input><label htmlFor="Hombre">Hombre</label>
-          <input type="radio" name="gender" ref="gender" value="Mujer" defaultChecked={gender === "Mujer"}></input><label htmlFor="Mujer">Mujer</label>
+          <input type="radio" name="gender" value="Hombre" defaultChecked={gender === "Hombre"} onChange={this.onGender}></input><label htmlFor="Hombre">Hombre</label>
+          <input type="radio" name="gender" value="Mujer" defaultChecked={gender === "Mujer"} onChange={this.onGender}></input><label htmlFor="Mujer">Mujer</label>
           <input ref="birthyear" type="number" placeholder="1999" defaultValue={birthyear}></input>
           <input ref="school" type="text" placeholder="Hogwarts" defaultValue={school}></input>
           <label>Talla</label>
-          <input type="radio" name="size" ref="size" value="S" defaultChecked={size === "S"} required></input><label htmlFor="S">S</label>
-          <input type="radio" name="size" ref="size" value="M" defaultChecked={size === "M"}></input><label htmlFor="M">M</label>
-          <input type="radio" name="size" ref="size" value="L" defaultChecked={size === "L"}></input><label htmlFor="L">L</label>
+          <input type="radio" name="size" value="S" defaultChecked={size === "S"} required onChange={this.onSize}></input><label htmlFor="S">S</label>
+          <input type="radio" name="size" value="M" defaultChecked={size === "M"} onChange={this.onSize}></input><label htmlFor="M">M</label>
+          <input type="radio" name="size" value="L" defaultChecked={size === "L"} onChange={this.onSize}></input><label htmlFor="L">L</label>
         </div>
       );
     };
