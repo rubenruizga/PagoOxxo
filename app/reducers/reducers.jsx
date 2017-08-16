@@ -45,6 +45,15 @@ export var userReducer = (state = {}, action) => {
   }
 };
 
+export var newReducer = (state = false, action) => {
+  switch (action.type) {
+    case 'SET_NEW':
+      return true;
+    default:
+      return state;
+  }
+}
+
 export var authReducer = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN':

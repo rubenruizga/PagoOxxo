@@ -12,13 +12,12 @@ exports.bigben = functions.https.onRequest((req, res) => {
   res.set("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, cel");
 
   var cel = req.get('cel');
-  var voluntariosRef = admin.database().ref().child(`voluntariosCuu`);
+  var voluntariosRef = admin.database().ref().child('voluntarioss');
 
  if (cel != null) {
     return voluntariosRef.once('value').then((snapshot) => {
       var data = snapshot.val();
       var voluntario = null;
-
      Object.keys(data).forEach((elementId) => {
         if (data[elementId].cel == cel) {
           voluntario = {

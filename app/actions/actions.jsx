@@ -29,10 +29,12 @@ export var getUser = (cel) => {
         }
       };
     $.ajax(settings).done( (response) => {
-      if (response != {}) {
+      if (Object.keys(response).length !== 0) {
         dispatch(setUser(response));
       } else {
+        console.log('new');
         dispatch(setPhone(cel));
+        dispatch(setNew());
       }
       hashHistory.push('/main');
     });
@@ -46,6 +48,12 @@ export var setPhone = (cel) => {
   };
 };
 
+export var setNew = () => {
+  return {
+    type: 'SET_NEW',
+  };
+};
+
 export var setUser = (data) => {
   return {
     type: 'SET_USER',
@@ -53,23 +61,29 @@ export var setUser = (data) => {
   };
 };
 
-export var startWriting = (text) => {
+export var startWriting = (volunteer, uid) => {
   return (dispatch, getState) => {
-    var data = {
-      text,
-      name: "Ruben",
-      admin: true,
-      age: 23,
-      email: "e9.ruben@gmail.com"
-    };
-    var uid = getState().auth.uid;
-    var dataRef = firebaseRef.child(`users/${uid}/data`).push(data);
-
+    var add = getState().new;
+    var fetchedVol = getState().user;
+    delete fetchedVol.uid;
+    console.log(volunteer);
+    if (add) {
+      var volRef = firebaseRef.child('voluntarioss').push(volunteer);
+      volRef.then(() => {
+        console.log('saved');
+      });
+    } else {
+      if (volunteer != fetchedVol) {
+        console.log('need to be updated');
+        var volRef = firebaseRef.child('voluntarioss').update(volunteer);
+        volRef.then(() => {
+          console.log('updated');
+        });
+      }
+    }
+    var dataRef = firebaseRef.child('carrera2017').push(volunteer);
     dataRef.then(() => {
-      dispatch(addData({
-        ...data,
-        id: dataRef.key
-      }));
+      console.log('saved');
     });
   };
 };

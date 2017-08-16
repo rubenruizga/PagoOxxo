@@ -5,11 +5,11 @@ var actions = require('actions');
 export var RegisterForm = React.createClass({
   onSend(e){
     e.preventDefault();
-    var {dispatch, cel, uid = ''} = this.props;
-    var {birthyear, email, gender, name, school, size} = this.refs;
-    var volunteer = {birthyear: birthyear.value, cel, email: email.value, gender: gender.value, name: name.value, school: school.value, size: size.value, uid}
+    var {dispatch, uid = ''} = this.props;
+    var {birthyear, cel, email, gender, name, school, size} = this.refs;
+    var volunteer = {birthyear: birthyear.value, cel: cel.value, email: email.value, gender: gender.value, name: name.value, school: school.value, size: size.value}
     console.log(volunteer);
-    //dispatch(actions.startLogin(code.value));
+    dispatch(actions.startWriting(volunteer, uid));
   },
   render: function () {
     var {dispatch, birthyear = '', cel = '', email = '', gender = '', name = '', school = '', size = '', uid = ''} = this.props;
