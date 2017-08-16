@@ -66,14 +66,13 @@ export var startWriting = (volunteer, uid) => {
     var add = getState().new;
     var fetchedVol = getState().user;
     delete fetchedVol.uid;
-    console.log(volunteer);
     if (add) {
       var volRef = firebaseRef.child('voluntarioss').push(volunteer);
       volRef.then(() => {
-        console.log('saved');
+        console.log('saved to volunteers');
       });
     } else {
-      if (volunteer != fetchedVol) {
+      if (volunteer.cel != fetchedVol.cel || volunteer.birthyear != fetchedVol.birthyear || volunteer.email != fetchedVol.email || volunteer.gender != fetchedVol.gender || volunteer.name != fetchedVol.name || volunteer.school != fetchedVol.school || volunteer.size != fetchedVol.size) {
         console.log('need to be updated');
         var volRef = firebaseRef.child(`voluntarioss/${uid}`).update(volunteer);
         volRef.then(() => {
@@ -83,7 +82,7 @@ export var startWriting = (volunteer, uid) => {
     }
     var dataRef = firebaseRef.child('carrera2017').push(volunteer);
     dataRef.then(() => {
-      console.log('saved');
+      console.log('saved to registry');
     });
   };
 };
